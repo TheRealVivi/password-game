@@ -7,13 +7,13 @@ int main(int argc, char** argv)
 {
 	std::ifstream myfile(argv[1]);
 	std::string word;
-	std::list<std::string> tokens;
+	UniqueTokenDetector detective;
 	
 	if(myfile.is_open())
 	{
 		while(myfile >> word)
 		{
-			std::cout << word << " ";
+			detective.listBuilder(word);
 		}
 		myfile.close();
 	}
@@ -22,7 +22,8 @@ int main(int argc, char** argv)
 		std::cout << "File missing." << std::endl;
 	}
 	
-	std::cout << std::endl;
-	
+	detective.viewTokens();
+	detective.tokenParser();
+	detective.viewTokens();
 	return 0;
 }
