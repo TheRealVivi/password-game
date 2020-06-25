@@ -54,6 +54,7 @@ public:
 				//std::cout << std::endl << token << " ";
 			}
 			
+			copyOfTokens.sort();
 			copyOfTokens.unique();
 			tokens = copyOfTokens;
 		}
