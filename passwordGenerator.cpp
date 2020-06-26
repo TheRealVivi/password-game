@@ -54,8 +54,7 @@ class PasswordGenerator
     
     void setIterationLength(int numWords)
     {
-        this->iterLength = numWords;
-        this->setTrack();
+        this->setTrack(numWords);
     }
     
 
@@ -82,9 +81,10 @@ class PasswordGenerator
     bool hasNext()
     {
         std::list<int>::iterator it = this->track.begin();
+        //return this->stillNext(it);
         while(it != this->track.end())
         {
-            if(*it < this->tokens.size()-1)
+            if(*it != this->tokens.size()-1)
                 return true;
             it++;
         }
@@ -95,10 +95,11 @@ class PasswordGenerator
     std::list<std::string> tokens;
     unsigned int iterLength;
     std::list<int> track;
+    bool ready;
 
     bool stillNext(std::list<int>::iterator it)
     {
-        if(*it >= tokens.size() - 1)
+        if(*it == tokens.size() - 1)
         {
             if(it != track.end())
                 return stillNext(std::next(it, 1));
@@ -141,13 +142,15 @@ class PasswordGenerator
 
     }
 
-    void setTrack()
+    void setTrack(int iterLength)
     {
         if(this->track.size() > 0)
             track.clear();
 
-        for(int i = 0; i < this->iterLength; i++)
+        for(int i = 0; i < iterLength; i++)
             track.push_front(0);
+
+        this->ready = true;
     }
 
     void trackIterate(std::list<int>::iterator it)
