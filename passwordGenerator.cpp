@@ -81,7 +81,6 @@ class PasswordGenerator
     bool hasNext()
     {
         std::list<int>::iterator it = this->track.begin();
-        //return this->stillNext(it);
         while(it != this->track.end())
         {
             if(*it != this->tokens.size()-1)
@@ -95,20 +94,6 @@ class PasswordGenerator
     std::list<std::string> tokens;
     unsigned int iterLength;
     std::list<int> track;
-    bool ready;
-
-    bool stillNext(std::list<int>::iterator it)
-    {
-        if(*it == tokens.size() - 1)
-        {
-            if(it != track.end())
-                return stillNext(std::next(it, 1));
-            else
-                return false;
-        }
-        else
-            return true;
-    }
 
     void combos(std::list<std::string> &out, std::list<std::string>data, int n, int r, int index, int i)
     {
