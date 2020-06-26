@@ -30,7 +30,6 @@ class PasswordGenerator
             auto it = chance.begin();
             std::advance(it, temp);
             pass = *it;
-            std::cout << "Super Luck activated.\n";
         }
         else
         {
@@ -72,7 +71,7 @@ class PasswordGenerator
                 std::advance(d, *it);
                 pass += *d + " ";
             }
-            this->trackIterate();
+            this->trackIterate(this->track.begin());
         }
         else
             pass = "None";
@@ -97,6 +96,18 @@ class PasswordGenerator
     unsigned int iterLength;
     std::list<int> track;
 
+    bool stillNext(std::list<int>::iterator it)
+    {
+        if(*it >= tokens.size() - 1)
+        {
+            if(it != track.end())
+                return stillNext(std::next(it, 1));
+            else
+                return false;
+        }
+        else
+            return true;
+    }
 
     void combos(std::list<std::string> &out, std::list<std::string>data, int n, int r, int index, int i)
     {
@@ -139,18 +150,14 @@ class PasswordGenerator
             track.push_front(0);
     }
 
-    void trackIterate()
-    {
-        listRecur(this->track.begin());
-    }
-    void listRecur(std::list<int>::iterator it)
+    void trackIterate(std::list<int>::iterator it)
     {
         (*it)++;
         if(*it == this->tokens.size())
         {
             *it = 0;
             if(it != this->track.end())
-                listRecur(std::next(it,1));
+                trackIterate(std::next(it,1));
 
         }
     }
