@@ -135,7 +135,6 @@ class PasswordGenerator
         for(int i = 0; i < iterLength; i++)
             track.push_front(0);
 
-        this->ready = true;
     }
 
     void trackIterate(std::list<int>::iterator it)
