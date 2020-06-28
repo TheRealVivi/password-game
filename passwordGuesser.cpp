@@ -12,11 +12,16 @@ namespace mso
 	{
 	private:
 		std::string pword;
+		mso::PasswordGenerator pGen;
+		bool pwordFound;
 		
 	public:
-		PasswordGuesser()
+		PasswordGuesser(std::list<std::string> tokens, int numWords)
 		{
-			pword = "empty";
+			pGen = mso::PasswordGenerator(tokens);
+			pGen.setIterationLength(numWords);
+			pword = pGen.getRandomPassword(numWords);
+			pwordFound = false;
 		}
 		void randomGuesser(std::string ppword)
 		{
@@ -28,13 +33,13 @@ namespace mso
 			std::cout << "inthread" << ppword << std::endl;
 		}
 		
-		void startGuessing(std::list<std::string> tokens, int numWords)
+		void startGuessing()
 		{
-			mso::PasswordGenerator pp = mso::PasswordGenerator(tokens);
-			std::string sequentoPword;
+			//mso::PasswordGenerator pp = mso::PasswordGenerator(tokens);
+			//std::string sequentoPword;
 			//PasswordGuesser pGuesser;
-			pp.setIterationLength(numWords);
-			pword = pp.getRandomPassword(numWords);
+			//pp.setIterationLength(numWords);
+			//pword = pp.getRandomPassword(numWords);
 			
 			std::cout << pword << std::endl;
 			std::thread rando(&PasswordGuesser::randomGuesser, this, pword);

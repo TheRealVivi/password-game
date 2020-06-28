@@ -13,7 +13,7 @@ int main(int argc, char** argv)
 	std::string word;
 	int num;
 	mso::UniqueTokenDetector detective;
-	mso::PasswordGuesser pGuesser;
+	//mso::PasswordGuesser pGuesser;
 	
 	if(myfile.is_open())
 	{
@@ -36,7 +36,8 @@ int main(int argc, char** argv)
 	std::cout << "Input a val 1-5" << std::endl << ">> ";
 	std::cin >> num;
 	
-	pGuesser.startGuessing(detective.getTokens(), num );
+	mso::PasswordGuesser pGuesser(detective.getTokens(), num);
+	pGuesser.startGuessing();
 	//pGuesser.startGuessing();
 	std::cout << std::endl << "Finished" << std::endl;
 	

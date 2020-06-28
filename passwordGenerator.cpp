@@ -8,6 +8,7 @@ namespace mso
 	class PasswordGenerator
 	{
 		public:
+		PasswordGenerator(){}
 		PasswordGenerator(std::list<std::string> uniques){this->tokens = uniques;}
 
 		~PasswordGenerator(){};
