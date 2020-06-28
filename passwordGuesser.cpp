@@ -42,8 +42,6 @@ namespace mso
 				}
 				
 				std::cout << "rando compared with: " << pass << std::endl;
-				//pwordFound = ppword.compare(pass);
-				//randoWins = ppword.compare(pass);
 				
 				i++;
 			}
@@ -91,17 +89,11 @@ namespace mso
 		
 		void startGuessing()
 		{
-			//mso::PasswordGenerator pp = mso::PasswordGenerator(tokens);
-			//std::string sequentoPword;
-			//PasswordGuesser pGuesser;
-			//pp.setIterationLength(numWords);
-			//pword = pp.getRandomPassword(numWords);
-			
 			std::cout << pword << std::endl;
 			std::thread rando(&PasswordGuesser::randomGuesser, this);
-			//std::thread sequento(&PasswordGuesser::sequentialGuesser, this);
+			std::thread sequento(&PasswordGuesser::sequentialGuesser, this);
 			rando.join();
-			//sequento.join();
+			sequento.join();
 		}
 	};
 }
