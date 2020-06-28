@@ -9,18 +9,20 @@ namespace mso
 	{
 		public:
 		PasswordGenerator(){}
-		PasswordGenerator(std::list<std::string> uniques){this->tokens = uniques;}
+		PasswordGenerator(std::list<std::string> uniques)
+        {
+            this->tokens = uniques;
+            this->setSeed();
+        }
 
 		~PasswordGenerator(){};
 		
 		std::string getRandomPassword(int numWords)
 		{
-			time_t now = time(NULL);
-			std::srand(now);
 			std::string pass = "";
 			int temp;
 
-			if(now % 2 == 0)
+			if(std::rand() % 5 == 0)
 			{
 				std::list<std::string> data, chance;
 
@@ -98,6 +100,11 @@ namespace mso
 		unsigned int iterLength;
 		std::list<int> track;
 
+        void setSeed()
+        {
+            std::srand(time(NULL));
+        }
+
 		void combos(std::list<std::string> &out, std::list<std::string>data, int n, int r, int index, int i)
 		{
 			std::list<std::string>::iterator d, t;
@@ -154,35 +161,29 @@ namespace mso
 	};
 }
 
-/*
-int main()
+
+/*int main()
 {
     std::srand(time(NULL));
     std::list<std::string> words;
 
-    for(int j = 0; j < 10; j++)
+    for(int j = 0; j < 12; j++)
         words.push_front(std::to_string(std::rand() % 117));
 
     for(auto it = words.begin(); it != words.end(); ++it)
         std::cout << *it + " ";
     std::cout << std::endl;
-    PasswordGenerator suitcase = PasswordGenerator(words);
+    mso::PasswordGenerator suitcase = mso::PasswordGenerator(words);
     std::cout << suitcase.getRandomPassword(5) << "\n";
     suitcase.setIterationLength(5);
     unsigned int q = 0;
-    while(suitcase.hasNext())
+    while(q < 100)
     {
-        std::cout << suitcase.next() << std::endl;
+        std::cout << suitcase.getRandomPassword(6) << std::endl;
         q++;
     }
     std::cout << q << std::endl;
-    for(auto it = words.begin(); it != words.end(); ++it)
-        std::cout << *it + " ";
-    std::cout << std::endl;
 
-    //std::cout << "Next1:\n" + suitcase.next() << std::endl;
-    //std::cout << "Next2:\n" + suitcase.next() << std::endl;
 
     return 0;
-}
-*/
+}*/
