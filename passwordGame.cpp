@@ -2,12 +2,18 @@
 #include <fstream>
 #include <string>
 #include <list>
+#include <thread>
+#include "uniqueTokenDetector.cpp"
+#include "passwordGuesser.cpp"
+#pragma
 
 int main(int argc, char** argv)
 {
 	std::ifstream myfile(argv[1]);
 	std::string word;
-	UniqueTokenDetector detective;
+	int num;
+	mso::UniqueTokenDetector detective;
+	mso::PasswordGuesser pGuesser;
 	
 	if(myfile.is_open())
 	{
@@ -25,5 +31,14 @@ int main(int argc, char** argv)
 	detective.viewTokens();
 	detective.tokenParser();
 	detective.viewTokens();
+	
+	std::cout << std::endl << std::endl;
+	std::cout << "Input a val 1-5" << std::endl << ">> ";
+	std::cin >> num;
+	
+	pGuesser.startGuessing(detective.getTokens(), num );
+	//pGuesser.startGuessing();
+	std::cout << std::endl << "Finished" << std::endl;
+	
 	return 0;
 }
