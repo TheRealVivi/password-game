@@ -14,7 +14,7 @@ namespace mso
 		std::string pword;
 		mso::PasswordGenerator pGen;
 		bool pwordFound;
-		int num;
+		 int num;
 		
 	public:
 		PasswordGuesser(std::list<std::string> tokens, int numWords)
@@ -29,7 +29,6 @@ namespace mso
 		{
 			std::string pass;
 			bool randoWins = false;
-			int i = 0;
 			
 			while(!pwordFound)
 			{
@@ -40,27 +39,21 @@ namespace mso
 					pwordFound = true;
 					randoWins = true;
 				}
-				
-				//std::cout << "rando compared with: " << pass << std::endl;
-				
-				i++;
 			}
 			
 			if(randoWins)
 			{
-				std::cout << "rando wins! pass: " << pass << " " << i << std::endl;
-				std::cout << "rando compared with: " << pword << std::endl;
+				std::cout << "rando wins!" << std::endl;
 			}
 			else
 			{
-				std::cout << "rando lost!" << " " << i << std::endl;
+				std::cout << "rando lost!" << std::endl;
 			}
 		}
 		void sequentialGuesser()
 		{
 			std::string pass;
 			bool sequentoWins = false;
-			int i = 0;
 			
 			while(!pwordFound)
 			{
@@ -70,26 +63,21 @@ namespace mso
 					pwordFound = true;
 					sequentoWins = true;
 				}
-				//std::cout << "sequento compared with: " << pass << std::endl;
-				i++;
 			}
 			
 			if(sequentoWins)
 			{
-				std::cout << "sequento wins! pass: " << pass << " " << i << std::endl;
-				std::cout << "sequento compared with: " << pword << std::endl;
+				std::cout << "sequento wins!" << std::endl;
 			}
 			else
 			{
-				std::cout << "sequento lost!" << " " << i << std::endl;
-				std::cout << "sequento compared with: " << pword << std::endl;
+				std::cout << "sequento lost!" << std::endl;
 			}
 			
 		}
 		
 		void startGuessing()
 		{
-			std::cout << pword << std::endl;
 			std::thread rando(&PasswordGuesser::randomGuesser, this);
 			std::thread sequento(&PasswordGuesser::sequentialGuesser, this);
 			rando.join();
