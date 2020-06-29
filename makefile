@@ -1,9 +1,9 @@
 C = g++
 
-all: passwordGenerator
+all: passwordGame
 
-passwordGenerator: passwordGenerator.cpp
-	${C} -std=c++11 -o $@.exe $^
+passwordGame: passwordGame.cpp
+	${C} -std=c++11 -o $@.exe $^ -pthread
 	
 gitpull: 
 	git pull origin master
@@ -11,8 +11,8 @@ gitpull:
 gitpush:
 	git push origin master
 	
-KYLESTUFF:
-	{
-	echo 'This is what I am showing' ; \
-	cd .. ; \
-	}
+test:
+	./passwordGame.exe test.txt
+
+words:
+	./passwordGame.exe words.txt

@@ -2,7 +2,6 @@
 #include <thread>
 #include <list>
 #include <string>
-#include <time.h>
 #include "passwordGenerator.cpp"
 
 
@@ -14,7 +13,7 @@ namespace mso
 		std::string pword;
 		mso::PasswordGenerator pGen;
 		bool pwordFound;
-		 int num;
+		int num;
 		
 	public:
 		PasswordGuesser(std::list<std::string> tokens, int numWords)
@@ -24,12 +23,13 @@ namespace mso
 			pGen.setIterationLength(numWords);
 			pword = pGen.getRandomPassword(numWords);
 			pwordFound = false;
+			std::cout << "\nYour randomly generated password is: \"" << pword << "\".\n";
 		}
 		void randomGuesser()
 		{
 			std::string pass;
 			bool randoWins = false;
-			
+
 			while(!pwordFound)
 			{
 				pass = pGen.getRandomPassword(num);
@@ -43,18 +43,18 @@ namespace mso
 			
 			if(randoWins)
 			{
-				std::cout << "rando wins!" << std::endl;
+				std::cout << "rando wins! ";
 			}
 			else
 			{
-				std::cout << "rando lost!" << std::endl;
+				std::cout << "rando lost! ";
 			}
 		}
 		void sequentialGuesser()
 		{
 			std::string pass;
 			bool sequentoWins = false;
-			
+
 			while(!pwordFound)
 			{
 				pass = pGen.next();
@@ -67,13 +67,12 @@ namespace mso
 			
 			if(sequentoWins)
 			{
-				std::cout << "sequento wins!" << std::endl;
+				std::cout << "sequento wins! ";
 			}
 			else
 			{
-				std::cout << "sequento lost!" << std::endl;
+				std::cout << "sequento lost! ";
 			}
-			
 		}
 		
 		void startGuessing()
