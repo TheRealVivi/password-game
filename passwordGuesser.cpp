@@ -41,7 +41,7 @@ namespace mso
 					randoWins = true;
 				}
 				
-				std::cout << "rando compared with: " << pass << std::endl;
+				//std::cout << "rando compared with: " << pass << std::endl;
 				
 				i++;
 			}
