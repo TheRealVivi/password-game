@@ -37,8 +37,9 @@ int main(int argc, char** argv)
 	}
 	detective.tokenParser();
 	std::cout << "\nThe parser has detected all unique tokens in \"" << argv[1] << "\".\n";
+    std::cout << "There are " << detective.getTokens().size() << " unique tokens.\n";
 
-	while(stillPlaying)
+    while(stillPlaying)
 	{
         std::cout << "How many words would you like your password to be?\n";
 
@@ -79,8 +80,7 @@ int main(int argc, char** argv)
                   << " microseconds to finish.\n\n";
 
         std::cout << "Would you like to have us generate another random password from the same list\n"
-                  << "of tokens? Enter an integer to choose the number of words again, or anything\n"
-                  << "else to quit: ";
+                  << "of tokens? Enter an integer to have a go again, or anything else to quit: ";
 
         std::getline(std::cin, word);
         sstream << word;
