@@ -43,11 +43,11 @@ namespace mso
 			
 			if(randoWins)
 			{
-				std::cout << "rando wins! ";
+				std::cout << "Rando wins! ";
 			}
 			else
 			{
-				std::cout << "rando lost! ";
+				std::cout << "Rando lost! ";
 			}
 		}
 		void sequentialGuesser()
@@ -67,11 +67,11 @@ namespace mso
 			
 			if(sequentoWins)
 			{
-				std::cout << "sequento wins! ";
+				std::cout << "Sequento wins! ";
 			}
 			else
 			{
-				std::cout << "sequento lost! ";
+				std::cout << "Sequento lost! ";
 			}
 		}
 		

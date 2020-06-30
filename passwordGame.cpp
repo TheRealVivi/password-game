@@ -1,8 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <list>
-#include <thread>
 #include <sstream>
 #include <chrono>
 #include "uniqueTokenDetector.cpp"
@@ -42,18 +40,18 @@ int main(int argc, char** argv)
 
 	while(stillPlaying)
 	{
-        std::cout << "How many words would you like you password to be?\n";
+        std::cout << "How many words would you like your password to be?\n";
 
         while (!clear)
         {
-            std::cout << "Enter an integer between 1 and 5 (inclusive): ";
+            std::cout << "\nEnter an integer between 1 and 5 (inclusive): ";
             std::getline(std::cin, word);
             sstream << word;
             sstream >> num;
             if (sstream.fail())
             {
                 std::cout << "That's not an integer.\n";
-                sstream.clear();
+                sstream = std::stringstream();
             }
             else
             {
@@ -65,6 +63,7 @@ int main(int argc, char** argv)
                 {
                     clear = true;
                 }
+                sstream = std::stringstream();
             }
         }
 
@@ -79,16 +78,21 @@ int main(int argc, char** argv)
                   << std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()
                   << " microseconds to finish.\n\n";
 
-        /*std::cout << "Would you like to have us generate another random password from the same list\n"
+        std::cout << "Would you like to have us generate another random password from the same list\n"
                   << "of tokens? Enter an integer to choose the number of words again, or anything\n"
                   << "else to quit: ";
 
         std::getline(std::cin, word);
         sstream << word;
         sstream >> num;
-        */
-        stillPlaying = false;
-
+        if(sstream.fail())
+        {
+            stillPlaying = false;
+        }
+        sstream = std::stringstream();
+        std::cout << std::endl;
+        clear = false;
     }
+
     return 0;
 }
