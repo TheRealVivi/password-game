@@ -81,7 +81,7 @@ int main(int argc, char** argv)
         mso::PasswordGuesser pGuesser(detective.getTokens(), num);
 		std::cout << "****************************************************************************" << std::endl << std::endl;
 		std::cout << "****************************************************************************" << std::endl;
-        std::cout << "How long will it take the password guesser to figure the password out?\n(You may have to wait a few moments)\n";
+        std::cout << "How long will it take the password guesser to figure the password out?\n(You may have to wait a few moments.)\n(NOTE: This may take a long time if 5 words were selected)\n" << std::endl;
 
         auto start = std::chrono::high_resolution_clock::now();
         pGuesser.startGuessing();
