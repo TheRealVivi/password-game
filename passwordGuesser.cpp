@@ -13,7 +13,7 @@ namespace mso
 		std::string pword;
 		mso::PasswordGenerator pGen;
 		bool pwordFound;
-		int num;
+		int num, seqWins = 0, ranWins = 0;
 		
 	public:
 		PasswordGuesser(std::list<std::string> tokens, int numWords)
@@ -44,6 +44,7 @@ namespace mso
 			if(randoWins)
 			{
 				std::cout << "Rando wins! ";
+                this->ranWins++;
 			}
 			else
 			{
@@ -68,6 +69,7 @@ namespace mso
 			if(sequentoWins)
 			{
 				std::cout << "Sequento wins! ";
+                this->seqWins++;
 			}
 			else
 			{
@@ -82,5 +84,15 @@ namespace mso
 			rando.join();
 			sequento.join();
 		}
+        
+        int getRanWins()
+        {
+            return this->ranWins;
+        }
+
+        int getSeqWins()
+        {
+            return this->seqWins;
+        }
 	};
 }

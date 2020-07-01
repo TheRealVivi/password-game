@@ -18,7 +18,7 @@ int main(int argc, char** argv)
     }
 	std::ifstream myfile(argv[1]);
 	std::string word;
-	int num;
+	int num, rWins = 0, sWins = 0;
     unsigned long long permutes;
 	mso::UniqueTokenDetector detective;
     bool clear = false, stillPlaying = true, firstTime = true;
@@ -112,6 +112,9 @@ int main(int argc, char** argv)
             std::cout << "It took "
                       << time << " microseconds to finish." << std::endl;
         }
+        rWins += pGuesser.getRanWins();
+        sWins += pGuesser.getSeqWins();
+        std::cout << "Score: Rando " << rWins << ", Seq "<< sWins << + ".\n";
 		std::cout << "****************************************************************************" << std::endl;
 		std::cout << "\n****************************************************************************\n";
         std::cout << "Would you like to have us generate another random password from the same list\n"
