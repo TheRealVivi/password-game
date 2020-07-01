@@ -16,3 +16,6 @@ test:
 
 words:
 	./passwordGame.exe words.txt
+
+leet:
+	./passwordGame.exe 1337speak.txt

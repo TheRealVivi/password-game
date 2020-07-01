@@ -53,7 +53,7 @@ int main(int argc, char** argv)
 
         while (!clear)
         {
-            std::cout << "\nEnter an integer between 1 and 5 (inclusive): ";
+            std::cout << "\nEnter an integer between 1 and 5 (inclusive)\n>> ";
             std::getline(std::cin, word);
             sstream << word;
             sstream >> num;
@@ -86,9 +86,25 @@ int main(int argc, char** argv)
         auto start = std::chrono::high_resolution_clock::now();
         pGuesser.startGuessing();
         auto elapsed = std::chrono::high_resolution_clock::now() - start;
-        std::cout << "It took "
-                  << std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count()
-                  << " microseconds to finish." << std::endl;
+        auto time = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
+        if(time > 60000000)
+        {
+            std::cout << "It took "
+                      << time / 60000000 << " minutes " 
+                      << (time % 60000000)/1000000
+                      << " seconds to finish." << std::endl;
+        }
+        else if(time > 1000000)
+        {
+            std::cout << "It took "
+                      << time / 1000000.0
+                      << " seconds to finish." << std::endl;
+        }
+        else
+        {
+            std::cout << "It took "
+                      << time << " microseconds to finish." << std::endl;
+        }
 		std::cout << "****************************************************************************" << std::endl;
 		std::cout << "\n****************************************************************************\n";
         std::cout << "Would you like to have us generate another random password from the same list\n"

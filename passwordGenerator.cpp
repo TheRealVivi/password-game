@@ -22,38 +22,21 @@ namespace mso
 			std::string pass = "";
 			int temp;
 
-			if(std::rand() % 5 == 0)
-			{
-				std::list<std::string> data, chance;
+            std::list<int> chosen;
 
-				for(int i = 0; i < numWords; i++)
-					data.push_front("");
-
-				combos(chance, data, this->tokens.size(), numWords, 0, 0);
-
-				temp = std::rand() % chance.size();
-				auto it = chance.begin();
-				std::advance(it, temp);
-				pass = *it;
-			}
-			else
-			{
-				std::list<int> chosen;
-
-				while (chosen.size() < numWords)
-				{
-					temp = std::rand() % this->tokens.size();
-					chosen.push_front(temp);
-				}
-				std::list<std::string>::iterator d;
-				for (auto it = chosen.begin(); it != chosen.end(); ++it)
-				{
-					temp = *it;
-					d = this->tokens.begin();
-					std::advance(d, temp);
-					pass += *d + " ";
-				}
-			}
+            while (chosen.size() < numWords)
+            {
+                temp = std::rand() % this->tokens.size();
+                chosen.push_front(temp);
+            }
+            std::list<std::string>::iterator d;
+            for (auto it = chosen.begin(); it != chosen.end(); ++it)
+            {
+                temp = *it;
+                d = this->tokens.begin();
+                std::advance(d, temp);
+                pass += *d + " ";
+            }
 			return pass;
 		}
 		
