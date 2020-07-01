@@ -60,7 +60,7 @@ int main(int argc, char** argv)
 
         while (!clear)
         {
-            std::cout << "\nEnter an integer between 1 and 5 (inclusive)\n>> ";
+            std::cout << "\nEnter an integer between 1 and 5 (inclusive). Non-numeric characters after numbers will be ignored.\n>> ";
             std::getline(std::cin, word);
             sstream << word;
             sstream >> num;
