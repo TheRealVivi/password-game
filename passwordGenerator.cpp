@@ -20,7 +20,7 @@ namespace mso
 		std::string getRandomPassword(int numWords)
 		{
 			std::string pass = "";
-			int temp;
+			int temp, j = 1;
 
             std::list<int> chosen;
 
@@ -30,12 +30,17 @@ namespace mso
                 chosen.push_front(temp);
             }
             std::list<std::string>::iterator d;
+
             for (auto it = chosen.begin(); it != chosen.end(); ++it)
             {
                 temp = *it;
                 d = this->tokens.begin();
                 std::advance(d, temp);
-                pass += *d + " ";
+
+                if(j++ == numWords)
+                    pass += *d;
+                else
+                    pass += *d + " ";
             }
 			return pass;
 		}
@@ -49,6 +54,7 @@ namespace mso
 		std::string next()
 		{
 			std::string pass;
+            int j = 1;
 			if(this->hasNext())
 			{
 				std::list<std::string>::iterator d;
@@ -56,7 +62,10 @@ namespace mso
 				{
 					d = this->tokens.begin();
 					std::advance(d, *it);
-					pass += *d + " ";
+                    if(j++ == this->track.size())
+                        pass += *d;
+                    else
+					    pass += *d + " ";
 				}
 				this->trackIterate(this->track.begin());
 			}

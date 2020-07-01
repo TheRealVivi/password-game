@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <chrono>
+#include <cmath>
 #include "uniqueTokenDetector.cpp"
 #include "passwordGuesser.cpp"
 #pragma
@@ -18,6 +19,7 @@ int main(int argc, char** argv)
 	std::ifstream myfile(argv[1]);
 	std::string word;
 	int num;
+    unsigned long long permutes;
 	mso::UniqueTokenDetector detective;
     bool clear = false, stillPlaying = true, firstTime = true;
     std::stringstream sstream;
@@ -36,10 +38,15 @@ int main(int argc, char** argv)
 		return -1;
 	}
 	detective.tokenParser();
+
+    num = detective.getTokens().size();
+    permutes = num*num*num*num*num;
+
 	std::cout << "****************************************************************************" << std::endl;
 	std::cout << "Welcome to the password game!" << std::endl;
 	std::cout << "The parser has detected all unique tokens in \"" << argv[1] << "\".\n";
-    std::cout << "There are " << detective.getTokens().size() << " unique tokens.\n";
+    std::cout << "There are " << num << " unique tokens and as many as " 
+              << permutes << " possible passwords.\n";
 	std::cout << "****************************************************************************" << std::endl << std::endl;
 
     while(stillPlaying)
