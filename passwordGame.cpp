@@ -1,3 +1,9 @@
+/*
+ * Collaborators:
+ * Joseph diaz 819-947-915
+ * Kyle O'Dell 824-811-891
+ */
+
 #include <iostream>
 #include <fstream>
 #include <string>
