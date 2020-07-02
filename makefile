@@ -19,3 +19,6 @@ words:
 
 leet:
 	./passwordGame.exe 1337speak.txt
+	
+gener:
+	./passwordGame.exe passwordGenerator.cpp

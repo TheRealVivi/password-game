@@ -2,6 +2,7 @@
 #include <thread>
 #include <list>
 #include <string>
+#include <chrono>
 #include "passwordGenerator.cpp"
 
 
@@ -76,11 +77,24 @@ namespace mso
 				std::cout << "Sequento lost! ";
 			}
 		}
+        void officiator()
+        {
+            auto start = std::chrono::high_resolution_clock::now();
+            while(!pwordFound)
+            {
+                auto elapsed = std::chrono::high_resolution_clock::now() - start;
+                auto time = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
+                if(time % 30000000 == 0)
+                    std::cout << time/1000000 << " seconds have elapsed.\n";
+            }
+        }
 		
 		void startGuessing()
 		{
 			std::thread rando(&PasswordGuesser::randomGuesser, this);
 			std::thread sequento(&PasswordGuesser::sequentialGuesser, this);
+            std::thread offic(&PasswordGuesser::officiator, this);
+            offic.join();
 			rando.join();
 			sequento.join();
 		}
